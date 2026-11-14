@@ -229,11 +229,11 @@ export default function Services() {
           />
         </Reveal>
 
-        {/* Catatan Biaya Layanan (Style Soft Sky Blue, rounded-lg pas, sejajar 1 baris & responsive) */}
-        <Reveal direction="from-left" delayMs={50}>
-          <div className="mx-auto mt-4 sm:mt-5 flex w-fit max-w-full items-center justify-center gap-1.5 sm:gap-2 rounded-lg border border-sky-200/90 bg-sky-50/85 px-3 sm:px-4 py-1.5 sm:py-2 text-center shadow-xs overflow-x-auto [scrollbar-width:none]">
-            <Info className="h-3.5 w-3.5 sm:h-4 sm:w-4 text-sky-600 shrink-0" aria-hidden="true" />
-            <p className="text-[11px] sm:text-xs md:text-sm font-medium text-sky-950 whitespace-nowrap leading-none">
+        {/* Catatan Biaya Layanan (Responsif & rapi membungkus di layar ponsel) */}
+        <Reveal direction="up" delayMs={50}>
+          <div className="mx-auto mt-4 sm:mt-5 flex max-w-2xl items-center justify-center gap-2 rounded-xl border border-sky-200/90 bg-sky-50/85 px-3.5 py-2 sm:px-4 sm:py-2 text-center shadow-xs">
+            <Info className="h-4 w-4 text-sky-600 shrink-0 self-center" aria-hidden="true" />
+            <p className="text-xs sm:text-sm font-medium text-sky-950 leading-relaxed text-center sm:text-left">
               {PRICE_NOTE}
             </p>
           </div>
@@ -252,7 +252,7 @@ export default function Services() {
             onMouseDown={handleMouseDown}
             onMouseMove={handleMouseMove}
             onMouseUp={handleMouseUpOrLeave}
-            className="relative flex cursor-grab select-none gap-3.5 sm:gap-4.5 overflow-x-auto px-1 pb-4 pt-2 snap-x snap-mandatory active:cursor-grabbing [scrollbar-width:none] [-ms-overflow-style:none] [&::-webkit-scrollbar]:none"
+            className="relative flex cursor-grab select-none gap-3 sm:gap-4.5 overflow-x-auto px-1 pb-4 pt-2 snap-x snap-mandatory active:cursor-grabbing [scrollbar-width:none] [-ms-overflow-style:none] [&::-webkit-scrollbar]:none"
           >
             {services.map((service, idx) => {
               const isSelected = selectedService === service.name;
@@ -261,7 +261,7 @@ export default function Services() {
                   key={service.name}
                   data-service-card={idx}
                   onClick={() => handleCardClick(service.name)}
-                  className={`group relative flex w-[76vw] max-w-[280px] sm:w-[285px] lg:w-[295px] xl:w-[305px] shrink-0 snap-start flex-col overflow-hidden rounded-lg bg-white p-3.5 sm:p-4 shadow-xs transition-all duration-200 cursor-pointer ${
+                  className={`group relative flex w-[calc(50%-6px)] min-w-[140px] sm:w-[285px] lg:w-[295px] xl:w-[305px] shrink-0 snap-start flex-col overflow-hidden rounded-xl bg-white p-2.5 sm:p-4 shadow-xs transition-all duration-200 cursor-pointer ${
                     isSelected
                       ? "border-2 border-sky-500 ring-4 ring-sky-100 shadow-md shadow-sky-100/60"
                       : "border border-slate-200/80 hover:-translate-y-1 hover:border-sky-300 hover:shadow-lg hover:shadow-sky-100/50"
@@ -269,14 +269,14 @@ export default function Services() {
                 >
                   {/* Badge Dipilih (saat card aktif dipilih oleh user) */}
                   {isSelected && (
-                    <span className="absolute top-2.5 right-2.5 z-10 inline-flex items-center gap-1 rounded-full bg-sky-600 px-2 py-0.5 text-[10px] font-bold text-white shadow-xs">
-                      <Check className="h-3 w-3" aria-hidden="true" />
+                    <span className="absolute top-2 right-2 z-10 inline-flex items-center gap-1 rounded-full bg-sky-600 px-1.5 py-0.5 text-[9px] sm:text-[10px] font-bold text-white shadow-xs">
+                      <Check className="h-2.5 w-2.5 sm:h-3 sm:w-3" aria-hidden="true" />
                       <span>Dipilih</span>
                     </span>
                   )}
 
                   {/* Foto Layanan - Ukuran pas & proporsional */}
-                  <div className="relative h-36 sm:h-38 lg:h-40 w-full overflow-hidden rounded-md bg-slate-100">
+                  <div className="relative h-24 sm:h-38 lg:h-40 w-full overflow-hidden rounded-lg bg-slate-100">
                     <img
                       src={service.image}
                       alt={service.imageAlt}
@@ -286,24 +286,24 @@ export default function Services() {
                     />
                   </div>
 
-                  <CardContent className="flex flex-1 flex-col p-0 pt-3.5 sm:pt-4">
+                  <CardContent className="flex flex-1 flex-col p-0 pt-2.5 sm:pt-4">
                     {/* Nama Layanan - Tinggi sejajar di semua card */}
-                    <h3 className="text-sm sm:text-base font-bold text-slate-900 leading-snug transition-colors group-hover:text-sky-600 line-clamp-2 min-h-[2.5rem] sm:min-h-[2.75rem] flex items-center">
+                    <h3 className="text-xs sm:text-base font-bold text-slate-900 leading-snug transition-colors group-hover:text-sky-600 line-clamp-2 min-h-[2rem] sm:min-h-[2.75rem] flex items-center">
                       {service.name}
                     </h3>
 
                     {/* Deskripsi Layanan - Tinggi sejajar di semua card (pas 2-3 baris) */}
-                    <p className="mt-1.5 sm:mt-2 text-xs sm:text-sm text-slate-600 leading-relaxed line-clamp-3 min-h-[3rem] sm:min-h-[3.35rem] flex items-start">
+                    <p className="mt-1 sm:mt-2 text-[11px] sm:text-sm text-slate-600 leading-relaxed line-clamp-2 sm:line-clamp-3 min-h-[2rem] sm:min-h-[3.35rem] flex items-start">
                       {service.description}
                     </p>
 
                     {/* Tindakan yang Termasuk (Tags / Chips) - Konsisten sejajar 1 baris */}
                     {service.items && service.items.length > 0 && (
-                      <div className="mt-2.5 sm:mt-3 flex items-center gap-1.5 overflow-x-auto flex-nowrap [scrollbar-width:none] [-ms-overflow-style:none] [&::-webkit-scrollbar]:none py-0.5">
+                      <div className="mt-2 sm:mt-3 flex items-center gap-1 sm:gap-1.5 overflow-x-auto flex-nowrap [scrollbar-width:none] [-ms-overflow-style:none] [&::-webkit-scrollbar]:none py-0.5">
                         {service.items.map((item) => (
                           <span
                             key={item}
-                            className="shrink-0 inline-flex items-center rounded-md border border-slate-200/90 bg-slate-50 px-2 py-0.5 text-xs font-semibold text-slate-800 whitespace-nowrap"
+                            className="shrink-0 inline-flex items-center rounded-md border border-slate-200/90 bg-slate-50 px-1.5 py-0.5 text-[10px] sm:text-xs font-semibold text-slate-700 sm:text-slate-800 whitespace-nowrap"
                           >
                             {item}
                           </span>
@@ -312,10 +312,10 @@ export default function Services() {
                     )}
 
                     {/* Tombol Pesan Layanan - Menempel rapi dengan jarak pas & sejajar di bawah */}
-                    <div className="mt-auto pt-3.5 sm:pt-4 border-t border-slate-100">
+                    <div className="mt-auto pt-2.5 sm:pt-4 border-t border-slate-100">
                       <Button
                         asChild
-                        className="w-full rounded-md bg-sky-600 text-xs sm:text-sm font-semibold text-white shadow-xs transition-all duration-200 hover:bg-sky-700 hover:shadow-md hover:shadow-sky-500/20 active:scale-[0.99] group/btn h-9 sm:h-10"
+                        className="w-full rounded-md bg-sky-600 text-[11px] sm:text-sm font-semibold text-white shadow-xs transition-all duration-200 hover:bg-sky-700 hover:shadow-md hover:shadow-sky-500/20 active:scale-[0.99] group/btn h-8 sm:h-10 px-2 sm:px-4"
                       >
                         <a
                           href={waOrderLink(service.name, service.price)}
@@ -327,10 +327,11 @@ export default function Services() {
                           }}
                           target="_blank"
                           rel="noreferrer"
+                          className="flex items-center justify-center gap-1 sm:gap-2"
                         >
                           <span>Pesan Layanan</span>
                           <ArrowRight
-                            className="h-3.5 w-3.5 transition-transform duration-200 group-hover/btn:translate-x-1"
+                            className="h-3 w-3 sm:h-3.5 sm:w-3.5 transition-transform duration-200 group-hover/btn:translate-x-1 shrink-0"
                             aria-hidden="true"
                           />
                         </a>

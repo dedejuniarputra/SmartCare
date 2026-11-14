@@ -145,7 +145,7 @@ export default function Hero() {
               <p className="text-xs sm:text-sm font-semibold text-slate-800">
                 {isOpen ? (
                   <>
-                    Tersedia hari ini ·{" "}
+                    Buka Setiap hari ·{" "}
                     <span className="font-medium text-slate-600">07.00 – 21.00</span>
                   </>
                 ) : (
