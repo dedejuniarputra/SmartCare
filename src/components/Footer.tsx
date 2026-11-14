@@ -35,7 +35,7 @@ function TikTokIcon({ className }: { className?: string }) {
 
 export default function Footer() {
   return (
-    <footer className="bg-sky-950 py-8 text-sky-100">
+    <footer className="bg-sky-950 pt-8 pb-24 sm:py-8 text-sky-100">
       <div
         className={`${container} flex flex-col items-center gap-5 text-center sm:flex-row sm:justify-between sm:text-left`}
       >

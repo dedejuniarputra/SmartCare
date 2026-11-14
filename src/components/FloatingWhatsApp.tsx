@@ -25,7 +25,10 @@ export default function FloatingWhatsApp() {
   };
 
   return (
-    <div className="fixed bottom-4 right-4 sm:bottom-6 sm:right-6 z-50 flex flex-col items-center gap-2 sm:gap-2.5">
+    <div
+      style={{ bottom: "calc(1rem + env(safe-area-inset-bottom, 0px))" }}
+      className="fixed right-4 sm:right-6 z-50 flex flex-col items-center gap-2 sm:gap-2.5"
+    >
       {/* Tombol WhatsApp Utama */}
       <a
         href={waLink(WA_MESSAGE)}

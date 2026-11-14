@@ -98,7 +98,7 @@ export default function Satisfaction() {
         </Reveal>
       </div>
 
-      <Reveal direction="from-right" delayMs={100}>
+      <Reveal direction="fade" delayMs={60}>
         <div className="marquee relative mt-8 sm:mt-12 overflow-hidden py-4 -my-4">
           <div className="marquee-track flex w-max">
             {[0, 1].map((group) => (

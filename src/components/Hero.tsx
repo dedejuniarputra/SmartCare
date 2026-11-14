@@ -31,7 +31,7 @@ export default function Hero() {
       >
         {/* ── Left: Copy (Fade in & Slide dari Kiri) ── */}
         <div className="flex flex-col justify-center">
-          <Reveal direction="from-left" delayMs={40}>
+          <Reveal direction="from-left" delayMs={0}>
             {/* Location pill */}
             <div className="inline-flex items-center gap-2 self-start rounded-full border border-sky-200 bg-sky-50 px-3.5 py-1.5 text-xs font-semibold text-sky-700">
               <MapPin className="h-3.5 w-3.5" aria-hidden="true" />
@@ -39,14 +39,14 @@ export default function Hero() {
             </div>
           </Reveal>
 
-          <Reveal direction="from-left" delayMs={100}>
+          <Reveal direction="from-left" delayMs={60}>
             <h1 className="mt-5 text-2xl font-extrabold leading-snug tracking-tight text-slate-900 sm:text-3xl lg:text-[2.25rem]">
               Perawatan kesehatan profesional,{" "}
               <span className="text-sky-600">langsung di rumah Anda.</span>
             </h1>
           </Reveal>
 
-          <Reveal direction="from-left" delayMs={160}>
+          <Reveal direction="from-left" delayMs={120}>
             <p className="mt-4 max-w-xl lg:max-w-2xl text-sm sm:text-base leading-relaxed text-slate-700">
               Perawat berpengalaman kami hadir ke rumah Anda untuk menangani
               perawatan luka, tanda vital, cek gula darah & kolesterol, personal
@@ -55,7 +55,7 @@ export default function Hero() {
           </Reveal>
 
           {/* CTA Buttons - Ramah sentuhan mobile (min 48px) */}
-          <Reveal direction="from-left" delayMs={220}>
+          <Reveal direction="from-left" delayMs={180}>
             <div className="mt-7 flex flex-col sm:flex-row gap-3 w-full sm:w-auto">
               <Button
                 asChild
@@ -83,13 +83,13 @@ export default function Hero() {
             </div>
           </Reveal>
 
-          {/* Trust Checklist - Selalu sejajar 1 baris di semua ukuran layar hp */}
-          <Reveal direction="from-left" delayMs={280}>
-            <ul className="mt-7 flex items-center gap-2.5 sm:gap-4 md:gap-5 overflow-x-auto flex-nowrap [scrollbar-width:none] [-ms-overflow-style:none] [&::-webkit-scrollbar]:none w-full py-0.5">
+          {/* Trust Checklist - Selalu wrap rapi dan terlihat utuh di semua ukuran layar hp */}
+          <Reveal direction="from-left" delayMs={240}>
+            <ul className="mt-7 flex flex-wrap items-center gap-x-4 gap-y-2 sm:gap-x-5 w-full py-0.5">
               {trustItems.map((item) => (
                 <li
                   key={item}
-                  className="flex shrink-0 items-center gap-1.5 whitespace-nowrap text-[11.5px] sm:text-xs md:text-sm font-medium text-slate-700"
+                  className="flex shrink-0 items-center gap-1.5 text-xs sm:text-sm font-medium text-slate-700"
                 >
                   <CheckCircle
                     className="h-3.5 w-3.5 shrink-0 text-sky-600 sm:h-4 sm:w-4"
@@ -103,7 +103,7 @@ export default function Hero() {
         </div>
 
         {/* ── Right: Image (Fade in & Slide dari Kanan) ── */}
-        <Reveal direction="from-right" delayMs={120} className="w-full">
+        <Reveal direction="from-right" delayMs={80} className="w-full">
           <div className="relative mx-auto md:ml-auto md:mr-0 w-full max-w-lg lg:max-w-xl">
             {/* Soft glow behind image */}
             <div

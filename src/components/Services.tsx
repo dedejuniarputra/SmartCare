@@ -230,7 +230,7 @@ export default function Services() {
         </Reveal>
 
         {/* Catatan Biaya Layanan (Style Soft Sky Blue, rounded-lg pas, sejajar 1 baris & responsive) */}
-        <Reveal direction="from-left" delayMs={80}>
+        <Reveal direction="from-left" delayMs={50}>
           <div className="mx-auto mt-4 sm:mt-5 flex w-fit max-w-full items-center justify-center gap-1.5 sm:gap-2 rounded-lg border border-sky-200/90 bg-sky-50/85 px-3 sm:px-4 py-1.5 sm:py-2 text-center shadow-xs overflow-x-auto [scrollbar-width:none]">
             <Info className="h-3.5 w-3.5 sm:h-4 sm:w-4 text-sky-600 shrink-0" aria-hidden="true" />
             <p className="text-[11px] sm:text-xs md:text-sm font-medium text-sky-950 whitespace-nowrap leading-none">
@@ -239,7 +239,7 @@ export default function Services() {
           </div>
         </Reveal>
 
-        <Reveal direction="from-right" delayMs={140}>
+        <Reveal direction="from-right" delayMs={90}>
           {/* Carousel Container (Bisa di-scroll manual & berjalan otomatis bertahap seperti detik jam pada mobile) */}
           <div className="relative mt-8 sm:mt-10">
           <div
@@ -252,7 +252,7 @@ export default function Services() {
             onMouseDown={handleMouseDown}
             onMouseMove={handleMouseMove}
             onMouseUp={handleMouseUpOrLeave}
-            className="relative flex cursor-grab select-none gap-3.5 sm:gap-4.5 overflow-x-auto px-1 pb-4 pt-2 active:cursor-grabbing [scrollbar-width:none] [-ms-overflow-style:none] [&::-webkit-scrollbar]:none"
+            className="relative flex cursor-grab select-none gap-3.5 sm:gap-4.5 overflow-x-auto px-1 pb-4 pt-2 snap-x snap-mandatory active:cursor-grabbing [scrollbar-width:none] [-ms-overflow-style:none] [&::-webkit-scrollbar]:none"
           >
             {services.map((service, idx) => {
               const isSelected = selectedService === service.name;
@@ -261,7 +261,7 @@ export default function Services() {
                   key={service.name}
                   data-service-card={idx}
                   onClick={() => handleCardClick(service.name)}
-                  className={`group relative flex w-[76vw] max-w-[280px] sm:w-[285px] lg:w-[295px] xl:w-[305px] shrink-0 flex-col overflow-hidden rounded-lg bg-white p-3.5 sm:p-4 shadow-xs transition-all duration-200 cursor-pointer ${
+                  className={`group relative flex w-[76vw] max-w-[280px] sm:w-[285px] lg:w-[295px] xl:w-[305px] shrink-0 snap-start flex-col overflow-hidden rounded-lg bg-white p-3.5 sm:p-4 shadow-xs transition-all duration-200 cursor-pointer ${
                     isSelected
                       ? "border-2 border-sky-500 ring-4 ring-sky-100 shadow-md shadow-sky-100/60"
                       : "border border-slate-200/80 hover:-translate-y-1 hover:border-sky-300 hover:shadow-lg hover:shadow-sky-100/50"
@@ -345,7 +345,7 @@ export default function Services() {
       </Reveal>
 
       {/* ── Indikator Animasi Bullet Point (Jarak Rapat & Rapi) ── */}
-      <Reveal direction="up" delayMs={180}>
+      <Reveal direction="up" delayMs={130}>
         <div
           className="mt-4 flex items-center justify-center gap-1"
           role="tablist"

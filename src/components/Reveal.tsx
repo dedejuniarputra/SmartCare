@@ -14,7 +14,7 @@ export default function Reveal({
   className = "",
   delayMs = 0,
   direction = "up",
-  durationMs = 450,
+  durationMs = 380,
 }: RevealProps) {
   const isPageReady = usePageReady();
   const ref = useRef<HTMLDivElement>(null);
@@ -30,7 +30,8 @@ export default function Reveal({
       return;
     }
 
-    // Observer responsif dengan rootMargin positif agar animasi sudah siap saat mendekati viewport
+    // Observer responsif dengan margin positif 80px agar animasi sudah mulai meluncur
+    // sebelum elemen masuk ke pandangan mata (0 lag, sangat enteng dan bebas flicker di HP)
     const observer = new IntersectionObserver(
       (entries) => {
         entries.forEach((entry) => {
@@ -41,8 +42,8 @@ export default function Reveal({
         });
       },
       {
-        threshold: 0.02,
-        rootMargin: "0px 0px 60px 0px",
+        threshold: 0.01,
+        rootMargin: "0px 0px 80px 0px",
       }
     );
 
@@ -62,7 +63,7 @@ export default function Reveal({
         setIsVisible(false);
         const timer = setTimeout(() => {
           setIsVisible(true);
-        }, 50);
+        }, 40);
         return () => clearTimeout(timer);
       }
     };
@@ -71,27 +72,27 @@ export default function Reveal({
     return () => window.removeEventListener("nav-section-activate", handleNavActivate);
   }, []);
 
-  // Transform inline halus, ringan & natural (jarak pergeseran pas, tidak berat / lambat)
+  // Jarak pergeseran mikro yang aman (12px - 14px), bebas overflow horizontal di layar HP
   const getTransformStyle = () => {
     if (isVisible) {
-      return "translate3d(0, 0, 0) scale(1)";
+      return "none";
     }
     switch (direction) {
       case "up":
-        return "translate3d(0, 20px, 0) scale(1)";
+        return "translate3d(0, 14px, 0)";
       case "down":
-        return "translate3d(0, -20px, 0) scale(1)";
+        return "translate3d(0, -14px, 0)";
       case "left":
       case "from-left":
-        return "translate3d(-24px, 0, 0) scale(1)";
+        return "translate3d(-14px, 0, 0)";
       case "right":
       case "from-right":
-        return "translate3d(24px, 0, 0) scale(1)";
+        return "translate3d(14px, 0, 0)";
       case "zoom":
-        return "translate3d(0, 0, 0) scale(0.96)";
+        return "scale(0.97)";
       case "fade":
       default:
-        return "translate3d(0, 12px, 0) scale(0.99)";
+        return "translate3d(0, 8px, 0)";
     }
   };
 
@@ -104,8 +105,7 @@ export default function Reveal({
         transitionProperty: "transform, opacity",
         transitionDuration: `${durationMs}ms`,
         transitionDelay: `${delayMs}ms`,
-        transitionTimingFunction: "cubic-bezier(0.22, 1, 0.36, 1)",
-        willChange: isVisible ? "auto" : "transform, opacity",
+        transitionTimingFunction: "cubic-bezier(0.16, 1, 0.3, 1)",
       }}
       className={className}
     >

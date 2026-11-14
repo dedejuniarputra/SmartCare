@@ -74,8 +74,8 @@ export default function OrderFlow() {
             {orderSteps.map((item, index) => {
               const Icon = iconMap[item.icon] || ClipboardList;
               const isActive = activeStep === index;
-              const cardDir = index === 0 ? "from-left" : index === 1 ? "up" : "from-right";
-              const cardDelay = index === 0 ? 50 : index === 1 ? 120 : 190;
+              const cardDir = "up";
+              const cardDelay = index === 0 ? 0 : index === 1 ? 70 : 140;
 
               return (
                 <div key={item.title} className="flex flex-col items-center w-full">
@@ -89,7 +89,7 @@ export default function OrderFlow() {
                       onPointerLeave={() => {
                         isPausedRef.current = false;
                       }}
-                      className={`group relative flex w-full max-w-[390px] md:max-w-none flex-1 flex-col items-center rounded-2xl px-5 sm:px-6 pt-0 pb-6 sm:pb-7 text-center shadow-xs transition-all duration-700 ease-in-out cursor-pointer ${
+                      className={`group relative flex w-full max-w-[390px] md:max-w-none flex-1 flex-col items-center rounded-2xl px-5 sm:px-6 pt-0 pb-6 sm:pb-7 text-center shadow-xs transition-all duration-400 ease-out cursor-pointer ${
                         isActive
                           ? "-translate-y-1.5 md:-translate-y-2 border-2 border-sky-400 bg-white shadow-xl shadow-sky-100/90 ring-4 ring-sky-100/60"
                           : "border border-slate-200/80 bg-white hover:-translate-y-1 hover:border-sky-300 hover:shadow-lg hover:shadow-sky-100/50"
@@ -98,16 +98,16 @@ export default function OrderFlow() {
                       {/* Node Ikon yang menempel persis di atas tali */}
                       <div className="relative z-10 -mt-7">
                         <div
-                          className={`grid h-13 w-13 sm:h-14 sm:w-14 place-items-center rounded-2xl border-2 transition-all duration-700 ease-in-out ${
+                          className={`grid h-13 w-13 sm:h-14 sm:w-14 place-items-center rounded-2xl border-2 transition-all duration-400 ease-out ${
                             isActive
                               ? "border-sky-500 bg-sky-600 text-white shadow-lg shadow-sky-500/25 scale-105"
                               : "border-sky-500 bg-white text-sky-600 shadow-md shadow-sky-100/80 group-hover:bg-sky-600 group-hover:text-white"
                           }`}
                         >
-                          <Icon className="h-5 w-5 sm:h-6 sm:w-6 transition-transform duration-500" aria-hidden="true" />
+                          <Icon className="h-5 w-5 sm:h-6 sm:w-6 transition-transform duration-300" aria-hidden="true" />
                         </div>
                         <span
-                          className={`absolute -bottom-2.5 left-1/2 -translate-x-1/2 whitespace-nowrap rounded-full px-2.5 sm:px-3 py-0.5 text-[11px] sm:text-xs font-bold uppercase tracking-wider transition-all duration-700 ease-in-out shadow-xs ${
+                          className={`absolute -bottom-2.5 left-1/2 -translate-x-1/2 whitespace-nowrap rounded-full px-2.5 sm:px-3 py-0.5 text-[11px] sm:text-xs font-bold uppercase tracking-wider transition-all duration-400 ease-out shadow-xs ${
                             isActive
                               ? "border border-sky-500 bg-sky-600 text-white shadow-sm shadow-sky-500/25 scale-105"
                               : "border border-sky-200 bg-sky-50 text-sky-800"
@@ -119,7 +119,7 @@ export default function OrderFlow() {
 
                       <div className="mt-7 sm:mt-8 flex flex-1 flex-col px-1 sm:px-2">
                         <h3
-                          className={`text-base sm:text-lg font-bold transition-colors duration-700 ease-in-out ${
+                          className={`text-base sm:text-lg font-bold transition-colors duration-400 ease-out ${
                             isActive ? "text-sky-600" : "text-slate-900 group-hover:text-sky-600"
                           }`}
                         >
