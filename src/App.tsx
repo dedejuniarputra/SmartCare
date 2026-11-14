@@ -1,3 +1,4 @@
+import { Analytics } from "@vercel/analytics/react";
 import { Navigate, Route, Routes } from "react-router-dom";
 import FloatingWhatsApp from "./components/FloatingWhatsApp";
 import Footer from "./components/Footer";
@@ -25,6 +26,7 @@ export default function App() {
         </main>
         <Footer />
         <FloatingWhatsApp />
+        <Analytics />
       </div>
     </PageReadyProvider>
   );
