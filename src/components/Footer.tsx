@@ -44,7 +44,7 @@ export default function Footer() {
           <span className="text-xs sm:text-sm font-medium text-sky-300">Sosial Media</span>
           <div className="flex items-center gap-2">
             <a
-              href="https://instagram.com/homecareyogyakarta"
+              href="https://www.instagram.com/homecarejog?cplk=MXM5czkyaTZoNWd0dQ=="
               target="_blank"
               rel="noreferrer"
               aria-label="Instagram Home Care Yogyakarta"
@@ -53,7 +53,7 @@ export default function Footer() {
               <InstagramIcon className="size-5" />
             </a>
             <a
-              href="https://tiktok.com/@homecareyogyakarta"
+              href="https://www.tiktok.com/@smarthomecarejog?_r=1&_t=ZS-9BOaDhMSeLU"
               target="_blank"
               rel="noreferrer"
               aria-label="TikTok Home Care Yogyakarta"
