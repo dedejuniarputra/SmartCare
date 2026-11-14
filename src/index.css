@@ -30,11 +30,17 @@
 
 @layer base {
   * {
+    -webkit-tap-highlight-color: transparent;
     @apply border-border outline-ring/50;
+  }
+
+  html {
+    scroll-behavior: smooth;
   }
 
   body {
     font-family: var(--font-sans);
+    overflow-x: clip;
     @apply bg-background text-foreground antialiased;
   }
 }
@@ -43,9 +49,29 @@
   animation: float 6s ease-in-out infinite;
 }
 
+.marquee {
+  overflow: hidden;
+  mask-image: linear-gradient(
+    to right,
+    transparent,
+    black 8%,
+    black 92%,
+    transparent
+  );
+  -webkit-mask-image: linear-gradient(
+    to right,
+    transparent,
+    black 8%,
+    black 92%,
+    transparent
+  );
+}
+
 .marquee-track {
-  animation: marquee 45s linear infinite;
+  display: flex;
+  width: max-content;
   will-change: transform;
+  animation: marquee 40s linear infinite;
 }
 
 .marquee:hover .marquee-track,
@@ -64,21 +90,71 @@
 }
 
 @keyframes marquee {
-  to {
-    transform: translateX(-50%);
+  0% {
+    transform: translate3d(0, 0, 0);
+  }
+  100% {
+    transform: translate3d(-50%, 0, 0);
   }
 }
 
+@keyframes travelBeamHorizontal {
+  0% {
+    left: 0%;
+    opacity: 0;
+  }
+  15% {
+    opacity: 1;
+  }
+  85% {
+    opacity: 1;
+  }
+  100% {
+    left: 100%;
+    opacity: 0;
+  }
+}
+
+.traveling-beam-h {
+  position: absolute;
+  animation: travelBeamHorizontal 3s ease-in-out infinite;
+  will-change: left, opacity;
+}
+
+/* ── Gentle heartbeat pulse untuk Logo SplashScreen ── */
+@keyframes gentlePulse {
+  0% {
+    transform: scale(1);
+  }
+  15% {
+    transform: scale(1.12);
+  }
+  30% {
+    transform: scale(1.02);
+  }
+  45% {
+    transform: scale(1.18);
+  }
+  70% {
+    transform: scale(1);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+
+.animate-gentle-pulse {
+  animation: gentlePulse 1.4s cubic-bezier(0.4, 0, 0.2, 1) infinite;
+  will-change: transform;
+}
+
 @media (prefers-reduced-motion: reduce) {
-  .animate-float {
+  .animate-float,
+  .traveling-beam-h {
     animation: none;
   }
-
-  .marquee {
-    overflow-x: auto;
-  }
-
-  .marquee-track {
+  .animate-gentle-pulse {
     animation: none;
+    transform: none;
   }
 }

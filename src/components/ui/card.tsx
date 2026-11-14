@@ -1,6 +1,7 @@
+import * as React from "react";
 import { cn } from "@/lib/utils";
 
-function Card({ className, ...props }) {
+function Card({ className, ...props }: React.HTMLAttributes<HTMLDivElement>) {
   return (
     <div
       data-slot="card"
@@ -13,7 +14,10 @@ function Card({ className, ...props }) {
   );
 }
 
-function CardContent({ className, ...props }) {
+function CardContent({
+  className,
+  ...props
+}: React.HTMLAttributes<HTMLDivElement>) {
   return (
     <div
       data-slot="card-content"
@@ -24,3 +28,4 @@ function CardContent({ className, ...props }) {
 }
 
 export { Card, CardContent };
+

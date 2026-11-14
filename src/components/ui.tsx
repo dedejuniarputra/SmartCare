@@ -1,8 +1,8 @@
-import { Badge } from "./ui/badge.jsx";
+import { Badge } from "./ui/badge";
 
-export const container = "mx-auto max-w-6xl px-4 sm:px-6 lg:px-8";
+export const container = "mx-auto max-w-7xl 2xl:max-w-[1380px] px-4 sm:px-6 lg:px-8";
 
-export function WhatsAppIcon({ className }) {
+export function WhatsAppIcon({ className }: { className?: string }) {
   return (
     <svg
       viewBox="0 0 24 24"
@@ -15,16 +15,45 @@ export function WhatsAppIcon({ className }) {
   );
 }
 
-export function SectionHeading({ eyebrow, title, description }) {
+export interface SectionHeadingProps {
+  eyebrow: string;
+  title: string;
+  description?: string;
+  className?: string;
+  titleClassName?: string;
+  descriptionClassName?: string;
+}
+
+export function SectionHeading({
+  eyebrow,
+  title,
+  description,
+  className,
+  titleClassName,
+  descriptionClassName,
+}: SectionHeadingProps) {
   return (
-    <div className="mx-auto max-w-2xl text-center">
-      <Badge variant="secondary" className="uppercase tracking-wide">
+    <div className={`mx-auto max-w-3xl text-center ${className || ""}`}>
+      <Badge variant="secondary" className="uppercase tracking-wider text-xs">
         {eyebrow}
       </Badge>
-      <h2 className="mt-3 text-3xl font-bold tracking-tight text-slate-900 sm:text-4xl">
+      <h2
+        className={`mt-3 text-2xl font-bold tracking-tight text-slate-900 sm:text-3xl lg:text-4xl ${
+          titleClassName || ""
+        }`}
+      >
         {title}
       </h2>
-      {description && <p className="mt-4 text-slate-600">{description}</p>}
+      {description && (
+        <p
+          className={`mt-3 sm:mt-4 text-sm sm:text-base leading-relaxed text-slate-600 ${
+            descriptionClassName || ""
+          }`}
+        >
+          {description}
+        </p>
+      )}
     </div>
   );
 }
+

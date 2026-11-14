@@ -1,6 +1,7 @@
-import { container } from "./ui.jsx";
+import { COPYRIGHT } from "../data/site";
+import { container } from "./ui";
 
-function InstagramIcon({ className }) {
+function InstagramIcon({ className }: { className?: string }) {
   return (
     <svg
       viewBox="0 0 24 24"
@@ -19,7 +20,7 @@ function InstagramIcon({ className }) {
   );
 }
 
-function TikTokIcon({ className }) {
+function TikTokIcon({ className }: { className?: string }) {
   return (
     <svg
       viewBox="0 0 24 24"
@@ -36,32 +37,29 @@ export default function Footer() {
   return (
     <footer className="bg-sky-950 py-8 text-sky-100">
       <div
-        className={`${container} flex flex-col items-center gap-4 text-center sm:flex-row sm:justify-between sm:text-left`}
+        className={`${container} flex flex-col items-center gap-5 text-center sm:flex-row sm:justify-between sm:text-left`}
       >
-        <p className="text-xs text-sky-300">
-          © {new Date().getFullYear()} Home Care Yogyakarta. Hak cipta
-          dilindungi.
-        </p>
+        <p className="text-xs sm:text-sm text-sky-200 leading-relaxed">{COPYRIGHT}</p>
         <div className="flex items-center gap-3">
-          <span className="text-xs text-sky-200">Sosial Media</span>
+          <span className="text-xs sm:text-sm font-medium text-sky-300">Sosial Media</span>
           <div className="flex items-center gap-2">
             <a
               href="https://instagram.com/homecareyogyakarta"
               target="_blank"
               rel="noreferrer"
               aria-label="Instagram Home Care Yogyakarta"
-              className="grid h-9 w-9 place-items-center rounded-full bg-white/5 text-sky-200 transition hover:bg-white/10 hover:text-white focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-sky-300"
+              className="grid h-11 w-11 place-items-center rounded-full bg-white/10 text-sky-200 transition hover:bg-white/20 hover:text-white focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-sky-300"
             >
-              <InstagramIcon className="size-4" />
+              <InstagramIcon className="size-5" />
             </a>
             <a
               href="https://tiktok.com/@homecareyogyakarta"
               target="_blank"
               rel="noreferrer"
               aria-label="TikTok Home Care Yogyakarta"
-              className="grid h-9 w-9 place-items-center rounded-full bg-white/5 text-sky-200 transition hover:bg-white/10 hover:text-white focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-sky-300"
+              className="grid h-11 w-11 place-items-center rounded-full bg-white/10 text-sky-200 transition hover:bg-white/20 hover:text-white focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-sky-300"
             >
-              <TikTokIcon className="size-4" />
+              <TikTokIcon className="size-5" />
             </a>
           </div>
         </div>
@@ -69,3 +67,4 @@ export default function Footer() {
     </footer>
   );
 }
+

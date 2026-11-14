@@ -1,14 +1,27 @@
 import { useEffect, useRef, useState } from "react";
-import { HeartHandshake, House, Menu, Phone, Star, X } from "lucide-react";
-import { navLinks } from "../data/site.js";
-import { container } from "./ui.jsx";
+import {
+  HeartHandshake,
+  House,
+  Menu,
+  Phone,
+  Star,
+  X,
+  type LucideIcon,
+} from "lucide-react";
+import { navLinks } from "../data/site";
+import { container } from "./ui";
 
-const navIcons = { House, HeartHandshake, Star, Phone };
+const navIcons: Record<string, LucideIcon> = {
+  House,
+  HeartHandshake,
+  Star,
+  Phone,
+};
 
 export default function Navbar() {
   const [scrolled, setScrolled] = useState(false);
   const [menuOpen, setMenuOpen] = useState(false);
-  const menuRef = useRef(null);
+  const menuRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     const onScroll = () => {
@@ -23,10 +36,12 @@ export default function Navbar() {
   useEffect(() => {
     if (!menuOpen) return;
 
-    const onPointerDown = (event) => {
-      if (!menuRef.current?.contains(event.target)) setMenuOpen(false);
+    const onPointerDown = (event: PointerEvent) => {
+      if (!menuRef.current?.contains(event.target as Node)) {
+        setMenuOpen(false);
+      }
     };
-    const onKeyDown = (event) => {
+    const onKeyDown = (event: KeyboardEvent) => {
       if (event.key === "Escape") setMenuOpen(false);
     };
 
@@ -61,7 +76,7 @@ export default function Navbar() {
           />
           <span className="leading-tight">
             <span className="block font-bold text-slate-900">Smart Home Care</span>
-            <span className="block text-xs text-slate-500">Yogyakarta</span>
+            <span className="block text-xs text-slate-500">Yogyakarta dan sekitarnya</span>
           </span>
         </a>
 
@@ -88,19 +103,19 @@ export default function Navbar() {
             aria-expanded={menuOpen}
             aria-controls="menu-mobile"
             aria-label={menuOpen ? "Tutup menu" : "Buka menu"}
-            className="grid h-9 w-9 place-items-center rounded-lg border border-slate-200 bg-white/80 text-slate-700 shadow-sm transition hover:border-sky-200 hover:text-sky-700 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-sky-600"
+            className="grid h-11 w-11 place-items-center rounded-md border border-slate-200 bg-white/90 text-slate-800 shadow-xs transition hover:border-sky-300 hover:text-sky-700 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-sky-600 active:scale-95"
           >
             {menuOpen ? (
-              <X className="h-4 w-4" aria-hidden="true" />
+              <X className="h-5 w-5" aria-hidden="true" />
             ) : (
-              <Menu className="h-4 w-4" aria-hidden="true" />
+              <Menu className="h-5 w-5" aria-hidden="true" />
             )}
           </button>
 
           {menuOpen && (
             <div
               id="menu-mobile"
-              className="absolute right-0 top-full mt-2 w-56 rounded-2xl border border-slate-100 bg-white p-1.5 shadow-xl shadow-slate-200/70 motion-safe:animate-in motion-safe:fade-in motion-safe:zoom-in-95 motion-safe:duration-150"
+              className="absolute right-0 top-full mt-2 w-64 rounded-2xl border border-slate-200/80 bg-white p-2 shadow-xl shadow-slate-900/10 motion-safe:animate-in motion-safe:fade-in motion-safe:zoom-in-95 motion-safe:duration-150"
             >
               {navLinks.map((link) => {
                 const Icon = navIcons[link.icon];
@@ -109,10 +124,10 @@ export default function Navbar() {
                     key={link.href}
                     href={link.href}
                     onClick={() => setMenuOpen(false)}
-                    className="flex items-center gap-2.5 rounded-xl px-3 py-2.5 text-sm font-medium text-slate-700 transition hover:bg-sky-50 hover:text-sky-700"
+                    className="flex min-h-[44px] items-center gap-3 rounded-xl px-3.5 py-2.5 text-base font-semibold text-slate-800 transition hover:bg-sky-50 hover:text-sky-700 active:bg-sky-100"
                   >
                     <Icon
-                      className="h-4 w-4 shrink-0 text-sky-600"
+                      className="h-5 w-5 shrink-0 text-sky-600"
                       aria-hidden="true"
                     />
                     {link.label}
@@ -126,3 +141,4 @@ export default function Navbar() {
     </header>
   );
 }
+
