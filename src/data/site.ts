@@ -174,21 +174,21 @@ export const testimonials: Testimonial[] = [
   },
   {
     name: "Ibu Wulan",
-    area: "Kotagede",
+    area: "Bantul",
     quote:
       "Luka ayah saya mulai membaik berkat perawatan rutin di rumah. Sangat terbantu.",
     rating: 4,
   },
   {
     name: "Bapak Hendra",
-    area: "Godean",
+    area: "Sleman",
     quote:
       "Bisa menyesuaikan jadwal sesuai kebutuhan keluarga. Komunikasinya cepat dan ramah.",
     rating: 5,
   },
   {
     name: "Ibu Dewi",
-    area: "Mlati",
+    area: "Yogyakarta",
     quote:
       "Membantu sekali saat suami pasca operasi. Kami jadi lebih tenang dirawat di rumah.",
     rating: 4,
