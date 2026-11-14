@@ -1,5 +1,5 @@
 import { useEffect, useRef, useState } from "react";
-import { ArrowRight, Check, Info } from "lucide-react";
+import { ArrowRight, Info } from "lucide-react";
 import { PRICE_NOTE, services, waOrderLink } from "../data/site";
 import Reveal from "./Reveal";
 import { Button } from "./ui/button";
@@ -8,7 +8,6 @@ import { container, SectionHeading } from "./ui";
 
 export default function Services() {
   const [activeIndex, setActiveIndex] = useState(0);
-  const [selectedService, setSelectedService] = useState<string | null>(null);
 
   const scrollRef = useRef<HTMLDivElement>(null);
   const isDraggingRef = useRef(false);
@@ -207,18 +206,6 @@ export default function Services() {
     isDraggingRef.current = false;
   };
 
-  const handleCardClick = (name: string) => {
-    if (hasMoved.current) return;
-    setSelectedService((prev) => (prev === name ? null : name));
-
-    // Jeda sementara 5 detik agar pengguna dapat membaca kartu yang dipilih
-    isInteractingRef.current = true;
-    if (resumeTimerRef.current) clearTimeout(resumeTimerRef.current);
-    resumeTimerRef.current = setTimeout(() => {
-      isInteractingRef.current = false;
-    }, 5000);
-  };
-
   return (
     <section id="layanan" className="scroll-mt-24 bg-white py-16 sm:py-20">
       <div className={container}>
@@ -254,37 +241,22 @@ export default function Services() {
             onMouseUp={handleMouseUpOrLeave}
             className="relative flex cursor-grab select-none gap-3 sm:gap-4.5 overflow-x-auto px-1 pb-4 pt-2 snap-x snap-mandatory active:cursor-grabbing [scrollbar-width:none] [-ms-overflow-style:none] [&::-webkit-scrollbar]:none"
           >
-            {services.map((service, idx) => {
-              const isSelected = selectedService === service.name;
-              return (
-                <Card
-                  key={service.name}
-                  data-service-card={idx}
-                  onClick={() => handleCardClick(service.name)}
-                  className={`group relative flex w-[calc(50%-6px)] min-w-[140px] sm:w-[285px] lg:w-[295px] xl:w-[305px] shrink-0 snap-start flex-col overflow-hidden rounded-xl bg-white p-2.5 sm:p-4 shadow-xs transition-all duration-200 cursor-pointer ${
-                    isSelected
-                      ? "border-2 border-sky-500 ring-4 ring-sky-100 shadow-md shadow-sky-100/60"
-                      : "border border-slate-200/80 hover:-translate-y-1 hover:border-sky-300 hover:shadow-lg hover:shadow-sky-100/50"
-                  }`}
-                >
-                  {/* Badge Dipilih (saat card aktif dipilih oleh user) */}
-                  {isSelected && (
-                    <span className="absolute top-2 right-2 z-10 inline-flex items-center gap-1 rounded-full bg-sky-600 px-1.5 py-0.5 text-[9px] sm:text-[10px] font-bold text-white shadow-xs">
-                      <Check className="h-2.5 w-2.5 sm:h-3 sm:w-3" aria-hidden="true" />
-                      <span>Dipilih</span>
-                    </span>
-                  )}
-
-                  {/* Foto Layanan - Ukuran pas & proporsional */}
-                  <div className="relative h-24 sm:h-38 lg:h-40 w-full overflow-hidden rounded-lg bg-slate-100">
-                    <img
-                      src={service.image}
-                      alt={service.imageAlt}
-                      draggable="false"
-                      loading="lazy"
-                      className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-105 pointer-events-none"
-                    />
-                  </div>
+            {services.map((service, idx) => (
+              <Card
+                key={service.name}
+                data-service-card={idx}
+                className="group relative flex w-[calc(50%-6px)] min-w-[140px] sm:w-[285px] lg:w-[295px] xl:w-[305px] shrink-0 snap-start flex-col overflow-hidden rounded-xl bg-white p-2.5 sm:p-4 shadow-xs transition-all duration-200 border border-slate-200/80 hover:-translate-y-1 hover:border-sky-300 hover:shadow-lg hover:shadow-sky-100/50"
+              >
+                {/* Foto Layanan - Ukuran pas & proporsional */}
+                <div className="relative h-24 sm:h-38 lg:h-40 w-full overflow-hidden rounded-lg bg-slate-100">
+                  <img
+                    src={service.image}
+                    alt={service.imageAlt}
+                    draggable="false"
+                    loading="lazy"
+                    className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-105 pointer-events-none"
+                  />
+                </div>
 
                   <CardContent className="flex flex-1 flex-col p-0 pt-2.5 sm:pt-4">
                     {/* Nama Layanan - Tinggi sejajar di semua card */}
@@ -339,9 +311,8 @@ export default function Services() {
                     </div>
                   </CardContent>
                 </Card>
-              );
-            })}
-          </div>
+              ))}
+            </div>
         </div>
       </Reveal>
 
